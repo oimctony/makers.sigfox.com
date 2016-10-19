@@ -10,12 +10,18 @@
 
       {% for event in entries %}
       {% assign timestamp = event.date|date:'%s' %}
-        {% unless timestamp < now %}
+      {%comment%}
+        Don't show events that are in the past, or too far in the future
+        4070822400000 means Dec 31, 2098
+        Why ? because liquid templates don't make it easy to do two-criteria sort
+        So ... i'm using 2099/1/1 as the date for "may happen in the future" SMT events
+      {%endcomment%}
+        {% unless timestamp < now or timestamp > '4070822400000' %}
           <div class="event-card mdl-card mdl-shadow--2dp mdl-color--primary">
             <div class="mdl-card__title mdl-card--expand">
               <h5 class="event-date">
                 {% if event.date %}
-                  <span class="event-date mdl-typography--font-thin">
+                  <span class="event-date mdl-typography--font-thin mdl-color-text--white">
                   {% if event.approx %}
                     {{event.date | date:"%B"}}
                   {%else %}
@@ -24,13 +30,13 @@
                 {%endif%}
                 </span>
               </h5>
-              <h4 class="event-location">
+              <h4 class="event-location mdl-color-text--white">
                 {{event.location}}
               </h4>
-              <h5 class="mdl-typography--font-thin">{{event.name}}</h5>
+              <h5 class="mdl-typography--font-thin mdl-color-text--white">{{event.name}}</h5>
             </div>
 
-            <div class="mdl-card__actions mdl-card--border">
+            <div class="mdl-card__actions mdl-card--border mdl-color-text--white">
               <a rel="noopener noreferrer" target="_blank" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"{% if event.url %} href="{{event.url}}"{%endif%}>
                 {%if event.desc %}
                   {{event.desc}}
@@ -46,7 +52,7 @@
       {% endfor %}
     </div>
     <div class="mdl-card__actions-purple">
-        <a class="mdl-button white" href="{{site.url}}/tour">More Information / Register</a>
+        <a class="mdl-button mdl-color-text--white" href="{{site.url}}/tour">More Information / Register</a>
    </div>
   </div>
 </section>

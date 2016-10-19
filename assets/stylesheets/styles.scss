@@ -12,8 +12,15 @@ a{
   text-decoration: none;
 }
 .mdl-layout.is-small-screen{
-  #about header{
+  .ribbon{
     display: none;
+  }
+  
+  #about header{
+    min-height: auto;
+    img{
+      height: 60px;
+    }
   }
   main.mdl-layout__content > .mdl-layout__tab-panel{
     padding-top: 0;
@@ -24,10 +31,33 @@ a{
   .mdl-layout__tab-bar .mdl-button {
     display: none;
   }
+  
+  footer{
+    padding:0;
+    text-align: center;
+    .mdl-mega-footer--middle-section{
+      display: none;
+    }
+    .mdl-mega-footer--bottom-section{
+      margin: 0;
+      padding: 0;
+      
+      .mdl-logo{
+        margin: 0;
+        
+        .logo{
+          max-height: 40px;
+        }
+      }
+    }
+  }
 }
 .mdl-layout:not(.is-small-screen){
   .mdl-layout__tab-bar, .mdl-layout__tab-bar-container {
     overflow: visible;
+  }
+  main#about, main#tour,  main#startups{
+    margin-top: -35vh;
   }
 }
 header.mdl-layout__header{
@@ -174,23 +204,10 @@ main.mdl-layout__content{
         text-decoration: none;
       }
     }
-    .section__circle-container > .section__circle-container__circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 32px;
-      margin: 8px 0;
-    }
-    &.section--footer{
-      .section__circle--big {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
-        margin: 8px 32px;
-      }
-    }
+    
   }
 
-  #events, #ambassadors, #agenda{
+  #events, #ambassadors, #agenda, &#startups{
     h3{
       width: 100%;
     }
@@ -201,9 +218,8 @@ main.mdl-layout__content{
     .events-info{
       margin-top:10px;
     }
-    .event-card.mdl-card, .ambassador-card.mdl-card {
-      width: auto;
-      min-width: 242px;
+    .event-card.mdl-card, .ambassador-card.mdl-card, .startups-partner-card {
+      width: 256px;
       margin: 10px 1%;
 
       > .mdl-card__actions {
@@ -226,7 +242,7 @@ main.mdl-layout__content{
       > .mdl-card__title,
       > .mdl-card__actions,
       > .mdl-card__actions > .mdl-button {
-        color: #fff;
+        
       }
       .mdl-card__title{
         display: block;
@@ -375,13 +391,6 @@ main.mdl-layout__content{
 }
 #startups{
   #partners{
-    .startups-partner-card{
-      display:flex;
-
-      width: 31%;
-
-      margin: 10px 1%;
-    }
     img{
       max-width:100%;
       max-height: 120px;
@@ -413,22 +422,14 @@ main.mdl-layout__content{
   position: relative;
   margin-bottom: 48px;
 }
+section{
+  width: 100%;
+}
 section.section--center, .tour-inner.section--center {
   max-width: 860px;
 }
 #features section.section--center {
   max-width: 620px;
-}
-
-.is-small-screen section.section--footer .section__circle--big {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  margin: 8px 16px;
-}
-section.section--footer {
-  padding: 64px 0;
-  margin: 0 -8px -8px -8px;
 }
 section.section--center .section__text:not(:last-child) {
   border-bottom: 1px solid rgba(0,0,0,.13);
@@ -442,29 +443,7 @@ section.section--center .section__text:not(:last-child) {
 #features h4, #features h5 {
   margin-bottom: 16px;
 }
-.toc {
-  border-left: 4px solid #C1EEF4;
-  margin: 24px;
-  padding: 0;
-  padding-left: 8px;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-.toc h4 {
-  font-size: 0.9rem;
-  margin-top: 0;
-}
-.toc a {
-  color: #4DD0E1;
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 28px;
-  display: block;
-}
+
 .mdl-menu__container {
   z-index: 99;
 }
@@ -474,15 +453,18 @@ section.section--center .section__text:not(:last-child) {
   background-color: unquote("rgb(#{$color-primary-dark})");
   flex-shrink: 0;
 }
-main#about, main#tour, main#getting-started, main#startups{
-  margin-top: -35vh;
-
+main#about, main#tour,  main#startups, main#getting-started{
   .about-inner, .tour-inner{
     padding: 1em;
   }
 }
-
-main.mdl-layout__content footer img.logo{
+main#tour{
+  h5.event-location{
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+footer img.logo{
   max-height: 60px;
 }
 
@@ -518,12 +500,4 @@ main.mdl-layout__content footer img.logo{
   background-color: #6e1fdd !important;
   color: #ffffff !important;
   height: 65px !important;
-}
-
-.white {
-  color: white !important;
-}
-
-.white-background {
-  background-color: white !important;
 }
